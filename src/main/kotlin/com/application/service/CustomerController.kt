@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/api")
 class CustomerController(@Autowired private val customerRepository: CustomerRepository) {
 
-    @GetMapping("/customer")
-    fun getCustomer(): Customer {
-        return Customer(1, "John", "Doe", "")
+    @GetMapping("/customer/{id}")
+    fun getCustomerById(): Customer {
+        return customerRepository.findById(1)
     }
 
+    @GetMapping("/customers")
+    fun getCustomers(): Iterable<Customer> {
+        return customerRepository.findAll()
+    }
 
 }
