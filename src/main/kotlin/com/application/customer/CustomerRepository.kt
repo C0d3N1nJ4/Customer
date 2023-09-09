@@ -1,11 +1,12 @@
 package com.application.customer
 
 import org.springframework.data.repository.CrudRepository
+import java.util.*
 
-interface CustomerRepository : CrudRepository<Customer, Long> {
+interface CustomerRepository : CrudRepository<Customer, Int> {
 
-    override fun findAll(): Iterable<Customer>
-    fun findById(id: Int): Customer
-
+    override fun findAll(): List<Customer>
+    override fun findById(id: Int): Optional<Customer>
+    fun save(customer: Customer): Customer
 
 }
