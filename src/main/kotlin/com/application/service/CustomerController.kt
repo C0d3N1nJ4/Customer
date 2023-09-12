@@ -1,6 +1,7 @@
 package com.application.service
 
 import com.application.customer.Customer
+import com.application.exceptions.CustomerNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
@@ -13,7 +14,14 @@ class CustomerController @Autowired constructor(private val customerService: Cus
     @GetMapping("/customer/{id}")
     @ResponseBody
     fun getCustomerById(@PathVariable id: Int): Optional<Customer> {
-        return customerService.getCustomerById(id)
+        //retrieve customer by id from customerService and assign it to a variable
+        var customer = customerService.getCustomerById(id)
+
+        if (customer.isPresent) {
+            return customer
+        } else {
+              throw CustomerNotFoundException(id)
+        }
     }
 
     @GetMapping("/customers")

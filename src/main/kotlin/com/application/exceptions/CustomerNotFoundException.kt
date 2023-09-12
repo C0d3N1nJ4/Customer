@@ -1,8 +1,4 @@
 package com.application.exceptions
 
 
-class CustomerNotFoundException : RuntimeException() {
-    fun CustomerNotFoundException(id: Int): String {
-        return "Customer with id $id not found"
-    }
-}
+class CustomerNotFoundException(customerId: Int) : RuntimeException("Customer with id $customerId not found")
