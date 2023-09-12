@@ -36,4 +36,18 @@ class CustomerController @Autowired constructor(private val customerService: Cus
         return customerService.createCustomer(customer)
     }
 
+    @PutMapping("/customer/{id}")
+    @ResponseBody
+    fun updateCustomer(@RequestBody customer : Customer, @PathVariable id: Int) {
+        var customerToUpdate = customerService.getCustomerById(id)
+        if (customerToUpdate.isPresent) {
+            customerToUpdate.get().firstName = customer.firstName
+            customerToUpdate.get().lastName = customer.lastName
+            customerToUpdate.get().email = customer.email
+            customerService.createCustomer(customerToUpdate.get())
+        } else {
+            throw CustomerNotFoundException(id)
+        }
+    }
+
 }

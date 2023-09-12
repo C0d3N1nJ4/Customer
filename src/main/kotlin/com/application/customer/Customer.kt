@@ -8,7 +8,7 @@ import jakarta.persistence.Table
 data class Customer(
     @Id
     val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val email: String
+    var firstName: String,
+    var lastName: String,
+    var email: String
 )
