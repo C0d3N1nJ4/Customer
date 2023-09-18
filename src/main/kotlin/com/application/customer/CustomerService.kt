@@ -1,4 +1,4 @@
-package com.application.service
+package com.application.customer
 
 import com.application.customer.Customer
 import org.springframework.stereotype.Service

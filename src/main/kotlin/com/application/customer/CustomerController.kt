@@ -1,6 +1,5 @@
-package com.application.service
+package com.application.customer
 
-import com.application.customer.Customer
 import com.application.exceptions.CustomerNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -9,7 +8,7 @@ import java.util.*
 
 @Controller
 @RequestMapping("/api")
-class CustomerController @Autowired constructor(private val customerService: CustomerService) {
+class CustomerController @Autowired constructor(private val customerService: CustomerServiceImpl) {
 
     @GetMapping("/customer/{id}")
     @ResponseBody
