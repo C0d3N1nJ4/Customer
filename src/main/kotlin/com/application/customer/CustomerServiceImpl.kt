@@ -20,4 +20,8 @@ class CustomerServiceImpl @Autowired constructor(
     override fun createCustomer(customer: Customer): Customer {
         return customerRepository.save(customer)
     }
+
+    override fun getCustomersByStatus(status: String): List<Customer> {
+        return customerRepository.findAll().filter { it.status == status }
+    }
 }
