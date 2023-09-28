@@ -29,6 +29,12 @@ class CustomerController @Autowired constructor(private val customerService: Cus
         return customerService.getAllCustomers()
     }
 
+    @GetMapping("/customers/{status}")
+    @ResponseBody
+    fun getCustomersByStatus(@PathVariable status: String): Iterable<Customer> {
+        return customerService.getCustomersByStatus(status)
+    }
+
     @PostMapping("/customer")
     @ResponseBody
     fun createCustomer(@RequestBody customer : Customer): Customer {
@@ -43,6 +49,7 @@ class CustomerController @Autowired constructor(private val customerService: Cus
             customerToUpdate.get().firstName = customer.firstName
             customerToUpdate.get().lastName = customer.lastName
             customerToUpdate.get().email = customer.email
+            customerToUpdate.get().status = customer.status
             customerService.createCustomer(customerToUpdate.get())
         } else {
             throw CustomerNotFoundException(id)

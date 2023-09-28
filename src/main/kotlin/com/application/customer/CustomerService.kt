@@ -13,5 +13,7 @@ interface CustomerService {
 
     fun createCustomer(customer: Customer): Customer
 
+    fun getCustomersByStatus(status: String): List<Customer>
+
 
 }
