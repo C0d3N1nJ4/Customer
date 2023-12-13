@@ -2,6 +2,7 @@ package com.application.customer
 
 import com.application.exceptions.CustomerNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -37,12 +38,14 @@ class CustomerController @Autowired constructor(private val customerService: Cus
 
     @PostMapping("/customer")
     @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
     fun createCustomer(@RequestBody customer : Customer): Customer {
         return customerService.createCustomer(customer)
     }
 
     @PutMapping("/customer/{id}")
     @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     fun updateCustomer(@RequestBody customer : Customer, @PathVariable id: Int) {
         var customerToUpdate = customerService.getCustomerById(id)
         if (customerToUpdate.isPresent) {

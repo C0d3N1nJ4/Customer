@@ -8,5 +8,6 @@ interface CustomerRepository : CrudRepository<Customer, Int> {
     override fun findAll(): List<Customer>
     override fun findById(id: Int): Optional<Customer>
     fun save(customer: Customer): Customer
+    fun findCustomersByStatus(s: String): List<Customer>
 
 }

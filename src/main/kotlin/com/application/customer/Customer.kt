@@ -1,8 +1,8 @@
 package com.application.customer
 
 
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import com.application.contact.Address
+import jakarta.persistence.*
 
 @Entity
 data class Customer(
@@ -11,5 +11,9 @@ data class Customer(
     var firstName: String,
     var lastName: String,
     var email: String,
-    var status: String = "active"
+    var status: String = "active",
+
+    @OneToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "customer_address_id")
+    val address: Address?
 )
