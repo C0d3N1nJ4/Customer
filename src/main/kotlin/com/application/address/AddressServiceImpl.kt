@@ -1,4 +1,4 @@
-package com.application.contact
+package com.application.address
 
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service

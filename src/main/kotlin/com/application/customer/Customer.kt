@@ -1,7 +1,7 @@
 package com.application.customer
 
 
-import com.application.contact.Address
+import com.application.address.Address
 import jakarta.persistence.*
 
 @Entity

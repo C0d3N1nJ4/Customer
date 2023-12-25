@@ -1,5 +1,6 @@
-package com.application.contact
+package com.application.address
 
+import com.application.address.Address
 import org.springframework.stereotype.Service
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.application.contact
+package com.application.address
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
