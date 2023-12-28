@@ -12,7 +12,7 @@ data class Customer(
     var name: String,
     var lastname: String,
     var email: String,
-    var status: String = "active",
+    var status: String,
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "address_id")
@@ -20,5 +20,5 @@ data class Customer(
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "contact_id")
-    val contact: Contact? = null
+    val contact: Contact?
 )

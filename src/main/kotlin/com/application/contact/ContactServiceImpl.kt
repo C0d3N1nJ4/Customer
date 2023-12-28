@@ -1,5 +1,8 @@
 package com.application.contact
 
+import org.springframework.stereotype.Service
+
+@Service
 class ContactServiceImpl: ContactService {
 
     private var contactRepository: ContactRepository? = null

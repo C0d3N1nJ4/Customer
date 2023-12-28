@@ -61,7 +61,15 @@ class CustomerIntegrationTests {
         mockMvc!!.perform(
             post("/api/customer")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"id\":5, \"firstName\":\"NAMEFIVE\", \"lastName\":\"LASTNAME\", \"email\":\"test@test.com\",\"status,\": \"ACTIVE\"}")
+                .content("""
+                                {
+                                    "id": 5,
+                                    "name": "NAMEFIVE",
+                                    "lastname": "LASTNAME",
+                                    "email": "test@test.com",
+                                    "status": "ACTIVE"
+                                }
+                                """)
         )
             .andExpect(status().isCreated())
             .andExpect(
@@ -69,10 +77,10 @@ class CustomerIntegrationTests {
                     """
                                 {
                                     "id": 5,
-                                    "firstName": "NAMEFIVE",
-                                    "lastName": "LASTNAME",
+                                    "name": "NAMEFIVE",
+                                    "lastname": "LASTNAME",
                                     "email": "test@test.com",
-                                    "status": "active"
+                                    "status": "ACTIVE"
                                 }
                                 """.trimIndent()
                 )
@@ -83,18 +91,33 @@ class CustomerIntegrationTests {
     @Throws(java.lang.Exception::class)
     fun saveCustomerWithAddress_StatusCREATED() {
         mockMvc!!.perform(
-            post("/customers")
+            post("/api/customer")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"id\":\"6\", \"name\":\"NAMEFIVE\", \"lastname\":\"LASTNAME\", \"status\": \"ACTIVE\", \"address\": { \"id\": \"6\"}}")
+                .content("""{
+                                    "id": 6,
+                                    "name": "NAMEFIVE",
+                                    "lastname": "LASTNAME",
+                                    "email" : "test@test.com",
+                                    "status": "ACTIVE",
+                                    "address": {
+                                        "id": "6",
+                                        "street": "STREET NAME",
+                                        "number": "6",
+                                        "suburb": "SUBURBSIX",
+                                        "city": "VIENNA",
+                                        "postalCode": "1234"
+                                    }
+                                }""")
         )
             .andExpect(status().isCreated())
             .andExpect(
                 content().json(
                     """
-                                {
-                                    "id": "6",
+                       {
+                                    "id": 6,
                                     "name": "NAMEFIVE",
                                     "lastname": "LASTNAME",
+                                    "email" : "test@test.com",
                                     "status": "ACTIVE",
                                     "address": {
                                         "id": "6",
