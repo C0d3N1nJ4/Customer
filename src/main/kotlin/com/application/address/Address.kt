@@ -10,5 +10,6 @@ data class Address(
     var street: String,
     var number: String,
     var suburb: String,
+    var city: String,
     var postalCode: String
 )

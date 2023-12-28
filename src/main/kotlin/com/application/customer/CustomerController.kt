@@ -49,8 +49,8 @@ class CustomerController @Autowired constructor(private val customerService: Cus
     fun updateCustomer(@RequestBody customer : Customer, @PathVariable id: Int) {
         var customerToUpdate = customerService.getCustomerById(id)
         if (customerToUpdate.isPresent) {
-            customerToUpdate.get().firstName = customer.firstName
-            customerToUpdate.get().lastName = customer.lastName
+            customerToUpdate.get().name = customer.name
+            customerToUpdate.get().lastname = customer.lastname
             customerToUpdate.get().email = customer.email
             customerToUpdate.get().status = customer.status
             customerService.createCustomer(customerToUpdate.get())

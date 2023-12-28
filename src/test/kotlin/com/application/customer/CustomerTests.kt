@@ -29,12 +29,12 @@ class CustomerTests(@Autowired val customerRepository: CustomerRepository) {
     @Test
     fun testCustomerById() {
         val customer = customerRepository.findById(1).get()
-        assert(customer.firstName.equals("NAMEONE"))
+        assert(customer.name.equals("NAMEONE"))
     }
 
     @Test
     fun testCustomerByIdNotFound() {
-        val customer = customerRepository.findById(4).orElse(null)
+        val customer = customerRepository.findById(9).orElse(null)
         assert(customer == null)
     }
 }

@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
-import org.springframework.web.context.WebApplicationContext
-
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.web.context.WebApplicationContext
 
 
 @SpringBootTest
@@ -74,6 +73,37 @@ class CustomerIntegrationTests {
                                     "lastName": "LASTNAME",
                                     "email": "test@test.com",
                                     "status": "active"
+                                }
+                                """.trimIndent()
+                )
+            )
+    }
+
+    @Test
+    @Throws(java.lang.Exception::class)
+    fun saveCustomerWithAddress_StatusCREATED() {
+        mockMvc!!.perform(
+            post("/customers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{ \"id\":\"6\", \"name\":\"NAMEFIVE\", \"lastname\":\"LASTNAME\", \"status\": \"ACTIVE\", \"address\": { \"id\": \"6\"}}")
+        )
+            .andExpect(status().isCreated())
+            .andExpect(
+                content().json(
+                    """
+                                {
+                                    "id": "6",
+                                    "name": "NAMEFIVE",
+                                    "lastname": "LASTNAME",
+                                    "status": "ACTIVE",
+                                    "address": {
+                                        "id": "6",
+                                        "street": "STREET NAME",
+                                        "number": "6",
+                                        "suburb": "SUBURBSIX",
+                                        "city": "VIENNA",
+                                        "postalCode": "1234"
+                                    }
                                 }
                                 """.trimIndent()
                 )
