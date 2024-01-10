@@ -18,4 +18,14 @@ class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
         problemDetail.title = "Customer not found"
         return problemDetail
     }
+
+    @ExceptionHandler(StatusNotFoundException::class)
+    fun handleStatusNotFoundException(e: StatusNotFoundException): ProblemDetail? {
+        val problemDetail = ProblemDetail.forStatusAndDetail(
+            HttpStatus.NOT_FOUND,
+            e.message!!
+        )
+        problemDetail.title = "Status not found"
+        return problemDetail
+    }
 }
