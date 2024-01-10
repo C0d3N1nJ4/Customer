@@ -1,5 +1,6 @@
 package com.application.contact
 
+import com.application.exceptions.ContactNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -20,7 +21,7 @@ class ContactController {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     fun getContactById(@PathVariable("id") id: String): Contact? {
-        return contactService.findById(id)
+        return contactService.findById(id) ?: throw ContactNotFoundException(id)
     }
 
     @PostMapping

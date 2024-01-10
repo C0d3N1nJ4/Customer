@@ -30,28 +30,28 @@ class CustomerIntegrationTests {
     @Test
     @Throws(java.lang.Exception::class)
     fun getAllCustomersTest_StatusOK() {
-        mockMvc!!.perform(get("/api/customers").contentType(MediaType.APPLICATION_JSON))
+        mockMvc!!.perform(get("/customers").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
     }
 
     @Test
     @Throws(Exception::class)
     fun customerByIdTest_StatusOK(){
-            mockMvc!!.perform(get("/api/customer/1").contentType(MediaType.APPLICATION_JSON))
+            mockMvc!!.perform(get("/customer/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
         }
 
     @Test
     @Throws(Exception::class)
     fun customerByStatusTest_StatusOK() {
-            mockMvc!!.perform(get("/api/customers/ACTIVE").contentType(MediaType.APPLICATION_JSON))
+            mockMvc!!.perform(get("/customers/filter/ACTIVE").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
         }
     @Test
     @Throws(Exception::class)
 
-    fun customerByStatusTest_StatusBadRequest() {
-            mockMvc!!.perform(get("/api/customers/INACTIVE").contentType(MediaType.APPLICATION_JSON))
+    fun customerByInactiveStatusTest_StatusOk() {
+            mockMvc!!.perform(get("/customers/filter/INACTIVE").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
         }
 
@@ -59,7 +59,7 @@ class CustomerIntegrationTests {
     @Throws(Exception::class)
     fun saveCustomer_StatusCREATED() {
         mockMvc!!.perform(
-            post("/api/customer")
+            post("/customer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                                 {
@@ -91,7 +91,7 @@ class CustomerIntegrationTests {
     @Throws(java.lang.Exception::class)
     fun saveCustomerWithAddress_StatusCREATED() {
         mockMvc!!.perform(
-            post("/api/customer")
+            post("/customer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""{
                                     "id": 6,

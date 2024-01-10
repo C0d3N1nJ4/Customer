@@ -14,11 +14,9 @@ data class Customer(
     var email: String,
     var status: String,
 
-    @OneToOne(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "address_id")
+    @OneToOne
     val address: Address?,
 
-    @OneToOne(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "contact_id")
+    @OneToOne
     val contact: Contact?
 )

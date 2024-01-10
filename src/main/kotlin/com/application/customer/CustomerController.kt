@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.HttpClientErrorException
 import java.util.*
 
-@Controller
-@RequestMapping("/api")
+@RestController
 class CustomerController @Autowired constructor(private val customerService: CustomerServiceImpl) {
 
     @GetMapping("/customer/{id}")
@@ -32,7 +31,7 @@ class CustomerController @Autowired constructor(private val customerService: Cus
         return customerService.getAllCustomers()
     }
 
-    @GetMapping("/customers/{status}")
+    @GetMapping("/customers/filter/{status}")
     @ResponseBody
     fun getCustomersByStatus(@PathVariable status: String): Iterable<Customer> {
         if (status != "ACTIVE" && status != "INACTIVE") {
